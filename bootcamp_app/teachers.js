@@ -19,10 +19,10 @@ pool.query(`
     JOIN students ON students.id = student_id
     JOIN cohorts ON cohorts.id = cohort_id
   WHERE
-    cohorts.name = '${cohortName}'
+    cohorts.name = $1
   ORDER BY
     teacher;
-`)
+`, [cohortName])
 .then(res => {
   res.rows.forEach(result => {
     console.log(`${result.cohort}: ${result.teacher}`);
